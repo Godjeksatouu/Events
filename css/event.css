@@ -1,0 +1,326 @@
+/* Modern Event Page Styling */
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;500;700&display=swap');
+
+:root {
+    --primary: #393e41;
+    --accent: #e94f37;
+    --light: #f6f7eb;
+    --dark: #1a1c1e;
+    --gray: #d3d4d9;
+    --border: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    color: var(--primary);
+    line-height: 1.6;
+} 
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    gap: 30px;
+    padding: 40px 20px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.main-content {
+    flex: 2;
+}
+
+.sidebar {
+    flex: 1;
+}
+
+.card {
+    background-color: white;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.soldout {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--accent);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-img {
+    width: 100%;
+    height: 350px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--primary);
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+ul {
+    list-style-position: inside;
+    margin: 15px 0;
+}
+
+li {
+    font-size: 15px;
+    margin: 8px 0;
+    color: var(--primary);
+}
+
+.date-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.date-label {
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.date-value {
+    font-size: 15px;
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+.ticket-type {
+    border-top: 1px dashed var(--border);
+    padding: 15px 0;
+}
+
+.ticket-type-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.ticket-type-name {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 16px;
+}
+
+.tickets-remaining {
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(233, 79, 55, 0.1);
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+
+.ticket-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: var(--primary);
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-selector button {
+    width: 28px;
+    height: 28px;
+    background-color: var(--light);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.quantity-selector button:hover {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.quantity-selector input {
+    width: 45px;
+    height: 28px;
+    text-align: center;
+    border: 1px solid var(--border);
+    margin: 0 5px;
+    border-radius: 4px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    margin: 20px 0;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    font-weight: 600;
+}
+
+.get-tickets-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.get-tickets-btn:hover {
+    background-color: #d14532;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(233, 79, 55, 0.3);
+}
+
+.calendar-option {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    color: var(--accent);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.calendar-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    fill: var(--accent);
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 12px 24px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    font-weight: 500;
+    color: var(--primary);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.tab:hover {
+    opacity: 1;
+}
+
+.tab.active {
+    color: var(--accent);
+    opacity: 1;
+    font-weight: 600;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+}
+
+.session-time {
+    font-size: 13px;
+    color: var(--primary);
+    margin: 12px 0;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .main-content, .sidebar {
+        width: 100%;
+    }
+    
+    .event-img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px;
+    }
+    
+    .tabs {
+        overflow-x: auto;
+    }
+    
+    .tab {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}

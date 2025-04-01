@@ -1,0 +1,207 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Gothic A1", sans-serif;
+}
+
+body {
+    background: white;
+    color: #333;
+    padding-top: 20px;
+}
+
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #260f51;
+    margin-bottom: 40px;
+}
+
+/* User Info Section */
+.user-info {
+    margin-bottom: 40px;
+}
+
+.user-info h2 {
+    font-family: "Caveat", cursive;
+    font-size: 30px;
+    color: #ff6b9b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-info form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.user-info label {
+    font-size: 16px;
+    color: #283746;
+    font-weight: 500;
+}
+
+.user-info input {
+    padding: 10px;
+    border: 2px solid #260f51;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.user-info input:focus {
+    border-color: #ff6600;
+}
+
+.user-info button {
+    background: #4A148C;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.user-info button:hover {
+    background: #ff6600;
+}
+
+/* Reservations Section */
+.reservations {
+    margin-top: 40px;
+}
+
+.reservations h2 {
+    font-family: "Caveat", cursive;
+    font-size: 30px;
+    color: #ff6b9b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.reservations p {
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+}
+
+.reservations table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reservations thead {
+    background: #260f51;
+    color: white;
+}
+
+.reservations th, td {
+    padding: 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.reservations th {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.reservations tbody tr {
+    border-bottom: 1px solid #ddd;
+    color: #666;
+}
+
+.reservations tbody tr:nth-child(even) {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.reservations tbody tr:hover {
+    background-color: #e0e0e0;
+}
+
+.reservations td a {
+    color: #4A148C;
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.reservations td a:hover {
+    color: #ff6600;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .profile-container {
+        width: 90%;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #260f51;
+    }
+}
+
+@media (max-width: 600px) {
+    .user-info form {
+        width: 100%;
+    }
+
+    .profile-container h1 {
+        font-size: 24px;
+    }
+
+    .user-info h2, .reservations h2 {
+        font-size: 24px;
+    }
+}
