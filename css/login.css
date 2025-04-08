@@ -166,19 +166,3 @@ body {
     padding: 0 5px;
     color: var(--accent);
 }
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    .login-container {
-        padding: 15px;
-    }
-    
-    .login-box {
-        padding: 30px;
-        margin: 0 10px;
-    }
-
-    .login-box h2 {
-        font-size: 1.8rem;
-    }
-}

@@ -143,22 +143,6 @@ body {
     transform: translateX(2px);
 }
 
-/* Responsive Design */
-@media (max-width: 480px) {
-    .signup-container {
-        padding: 15px;
-    }
-    
-    .signup-container form {
-        padding: 30px;
-        margin: 0 10px;
-    }
-
-    .form-heading {
-        font-size: 2rem;
-    }
-}
-
 /* Floating label animation (optional) */
 .input-group label {
     position: absolute;

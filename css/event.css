@@ -293,34 +293,3 @@ li {
     margin: 12px 0;
     opacity: 0.8;
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .main-content, .sidebar {
-        width: 100%;
-    }
-    
-    .event-img {
-        height: 250px;
-    }
-}
-
-@media (max-width: 480px) {
-    .card {
-        padding: 20px;
-    }
-    
-    .tabs {
-        overflow-x: auto;
-    }
-    
-    .tab {
-        padding: 10px 15px;
-        font-size: 14px;
-    }
-}

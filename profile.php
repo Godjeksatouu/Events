@@ -56,16 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update'])) {
     exit();
 }
 
-// Fetch all reservations made by the user
-$reservationSql = "SELECT r.idReservation, e.dateEvent, e.timeEvent, ev.eventTitle, r.qteBilletsNormal, r.qteBilletsReduit 
-                   FROM reservation r
-                   JOIN edition e ON r.editionId = e.editionId
-                   JOIN evenement ev ON e.eventId = ev.eventId
-                   WHERE r.idUser = :userId
-                   ORDER BY r.idReservation DESC";
-$reservationStmt = $pdo->prepare($reservationSql);
-$reservationStmt->execute([':userId' => $userId]);
-$reservations = $reservationStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -100,46 +90,10 @@ $reservations = $reservationStmt->fetchAll(PDO::FETCH_ASSOC);
                 <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($user['mailUser']); ?>" required>
 
                 <label for="password">Password (leave empty to keep the current password):</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($hashedPassword); ?>">
 
                 <button type="submit" name="update">Update Information</button>
             </form>
-        </div>
-
-        <!-- Reservations Table -->
-        <div class="reservations">
-            <h2>Your Reservations</h2>
-            <?php if (empty($reservations)): ?>
-                <p>No reservations found.</p>
-            <?php else: ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Reservation ID</th>
-                            <th>Event Title</th>
-                            <th>Event Date</th>
-                            <th>Normal Tickets</th>
-                            <th>Reduced Tickets</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($reservations as $reservation): ?>
-                            <tr>
-                                <td><?php echo htmlspecialchars($reservation['idReservation']); ?></td>
-                                <td><?php echo htmlspecialchars($reservation['eventTitle']); ?></td>
-                                <td><?php echo htmlspecialchars($reservation['dateEvent']); ?> at <?php echo htmlspecialchars($reservation['timeEvent']); ?></td>
-                                <td><?php echo htmlspecialchars($reservation['qteBilletsNormal']); ?></td>
-                                <td><?php echo htmlspecialchars($reservation['qteBilletsReduit']); ?></td>
-                                <td>
-                                    <a href="ticket.php?id=<?= urlencode($reservation['idReservation']) ?>">Voir mes billets</a>
-                                    <a href="facteur.php?id=<?= urlencode($reservation['idReservation']) ?>">View Invoice</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php endif; ?>
         </div>
     </div>
 </body>

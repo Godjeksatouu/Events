@@ -19,7 +19,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $row = $stmt->fetch();
         $new_id = ($row['last_id'] ?? 0) + 1;
-
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 

@@ -2,63 +2,28 @@
 session_start();
 require 'config.php';
 
-$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
-$startDate = isset($_GET['startDate']) ? $_GET['startDate'] : '';
-$endDate = isset($_GET['endDate']) ? $_GET['endDate'] : '';
-$category = isset($_GET['category']) ? $_GET['category'] : '';
-
 
 // Initial query
-$query = 'SELECT e.eventId, ed.editionId, e.eventTitle AS event_title, e.eventDescription AS event_description, 
-                 e.eventType AS typeEvent, e.TariffNormal, e.TariffReduit, ed.image AS event_image, 
-                 ed.dateEvent AS edition_date, ed.timeEvent AS edition_time, ed.NumSalle, s.capSalle,
-                 (SELECT SUM(r.qteBilletsNormal) + SUM(r.qteBilletsReduit) FROM reservation r WHERE r.editionId = ed.editionId) AS total_reserved
-          FROM evenement e
-          JOIN edition ed ON e.eventId = ed.eventId
-          JOIN salle s ON ed.NumSalle = s.NumSalle
-          WHERE ed.dateEvent >= CURDATE()';
+$query = 'SELECT 
+e.eventId, 
+ed.editionId, 
+e.eventTitle AS event_title, 
+e.eventDescription AS event_description, 
+e.eventType AS typeEvent, 
+e.TariffNormal, 
+e.TariffReduit, 
+ed.image AS event_image, 
+ed.dateEvent AS edition_date, 
+ed.timeEvent AS edition_time, 
+ed.NumSalle, 
+s.capSalle
+FROM evenement e
+JOIN edition ed ON e.eventId = ed.eventId
+JOIN salle s ON ed.NumSalle = s.NumSalle
+WHERE ed.dateEvent >= CURDATE()';
 
-// Add search condition if searchTerm is set
-if ($searchTerm) {
-    $query .= ' AND e.eventTitle LIKE :searchTerm';
-}
-
-// Add date conditions if startDate and endDate are set
-if ($startDate && $endDate) {
-    $query .= ' AND ed.dateEvent BETWEEN :startDate AND :endDate';
-} else {
-    if ($startDate) {
-        $query .= ' AND ed.dateEvent >= :startDate';
-    }
-    if ($endDate) {
-        $query .= ' AND ed.dateEvent <= :endDate';
-    }
-}
-
-// Add category condition if category is set
-if ($category) {
-    $query .= ' AND e.eventType = :category';
-}
 
 $stmt = $pdo->prepare($query);
-
-// Bind parameters
-if ($searchTerm) {
-    $stmt->bindValue(':searchTerm', '%' . $searchTerm . '%', PDO::PARAM_STR);
-}
-
-if ($startDate) {
-    $stmt->bindParam(':startDate', $startDate, PDO::PARAM_STR);
-}
-
-if ($endDate) {
-    $stmt->bindParam(':endDate', $endDate, PDO::PARAM_STR);
-}
-
-if ($category) {
-    $stmt->bindParam(':category', $category, PDO::PARAM_STR);
-}
-
 $stmt->execute();
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -81,13 +46,6 @@ $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Header -->
     <?php include 'header.php'; ?>
 
-
-    <!-- Hero Section -->
-    <section class="hero">
-    <div class="hero-content">
-        <p>Find Your Next Experience</p>
-        <h1>Discover & Promote Upcoming Events</h1>
-    </div>
 </section>
     <section class="container-2">
     <div class="contain-header">
